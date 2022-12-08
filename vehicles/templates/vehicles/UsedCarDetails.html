@@ -1,0 +1,531 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+
+<link href="{% static '/css/UsedCarDetails.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class="row" style="height:92px;background-color:black">
+
+</div>
+
+<!-- Card Start -->
+<div class="container-fluid" style="margin-top:30px">
+  	<div class="card w-100" >
+   		<div class="row">
+	      	<div class="col-sm-7">
+	        	<div class="card-block">
+	          		<h4 class="card-title">{{veh.name}}<span class="badge badge-pill badge-warning float-right">£ {{veh.price|intcomma}}</span></h4>
+	          		<p class="card-text">{{veh.long_description}}</p>
+	          		<h4 class="card-title">This car comes with</h4>
+	          		<p class="card-text">
+	            	{{veh.short_description}}
+	          		</p>
+	          		<br/>
+	          		<br/>
+	          		<h4 class="text-center bg-danger text-white" style="border-radius: 7px">Key Facts</h4>
+	          		<div class="row text-center">
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/schedule.png'%}"/>
+	          				<h6>Model Year</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.model_year}}</h6>
+	          			</div>
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/fuel.png'%}"/>
+	          				<h6 >Fuel Type</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.fuel_type}}</h6>
+	          			</div>
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/racing.png'%}"/>
+	          				<h6>Mileage</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.mileage}}</h6>
+	          			</div>
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/car-engine.png'%}"/>
+	          				<h6>Engine Size</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.engine_size}}</h6>
+	          			</div>
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/automatic-transmission.png'%}"/>
+	          				<h6>Transmission</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.transmission}}</h6>
+	          			</div>
+	          			<div class="col-xs-6 col-sm-3">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/paint-brush.png'%}"/>
+	          				<h6>Color</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.color}}</h6>
+	          			</div>
+	          		</div>
+	        	</div>
+	      	</div>
+	      <!-- Photo Gallery Start -->
+	      	<div class="col-md-5">
+	      		<a data-fancybox ="gallery" href="{{veh.image.url}}">
+	      			<img class="rounded m-2" style="max-width:100%" src="{{veh.image.url}}">
+	      		</a>
+      			{% for i in veh.vehicleimage_set.all %}
+	      			<a data-fancybox ="gallery" href="{{i.image.url}}">
+	      				<img class="rounded m-2" style="max-width:150px" src="{{i.image.url}}">
+	      			</a>
+      			{% endfor %}
+	      		
+	      	</div>
+	      	<!-- End of Photo Gallery -->
+  		</div>
+  		<div class="row">
+  			<div class="container-fluid my-2">
+			    <hr class="m-2"/>
+
+			    <h6 class="font-weight-bold m-4">Technical Specifications</h6>
+			        
+			        <!--Accordion wrapper-->
+			    <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+			      <!-- Accordion card -->
+			      <div class="card w-100">
+
+			        <!-- Card header -->
+			        <div class="card-header bg-indigo" role="tab" id="headingOne1">
+			          <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+			            aria-controls="collapseOne1">
+			            <h5 class="mb-0">
+			              Vehicle Summary <i class="fas fa-angle-down rotate-icon float-right"></i>
+			            </h5>
+			          </a>
+			        </div>
+
+			        <!-- Card body -->
+			        <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+			          data-parent="#accordionEx">
+			          <div class="card-body">
+			          	<table class="table table-hover">
+						  {% for vs in veh.vehiclesummary_set.all %}
+						  <tbody>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Body Style</th>
+						      <td style="font-weight: bold">{{vs.body_style}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Engine Size</th>
+						      <td style="font-weight: bold">{{vs.engine_size}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Fuel Type</th>
+						      <td style="font-weight: bold">{{vs.fuel_type}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Number of doors</th>
+						      <td style="font-weight: bold">{{vs.number_of_doors}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Number of seats</th>
+						      <td style="font-weight: bold">{{vs.number_of_seats}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Gearbox Type</th>
+						      <td style="font-weight: bold">{{vs.gearbox_type}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">CO2 Emissions</th>
+						      <td style="font-weight: bold">{{vs.CO2_emissions}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Insurance Group</th>
+						      <td style="font-weight: bold">{{vs.insurance_group}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Standard manufacturer's warranty (miles)</th>
+						      <td style="font-weight: bold">{{vs.standard_manufacturer_warranty_miles}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Standard manufacturer's warranty (years)</th>
+						      <td style="font-weight: bold">{{vs.standard_manufacturer_warranty_years}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Standard paintwork guarantee</th>
+						      <td style="font-weight: bold">{{vs.standard_paintwork_guarantee}}</td>
+						    </tr>
+						  </tbody>
+						  {% endfor %}
+						</table>
+			          </div>
+			        </div>
+
+			      </div>
+			      <!-- Accordion card -->
+
+			      <!-- Accordion card -->
+			      <div class="card w-100">
+
+			        <!-- Card header -->
+			        <div class="card-header bg-indigo" role="tab" id="headingTwo2">
+			          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+			            aria-expanded="false" aria-controls="collapseTwo2">
+			            <h5 class="mb-0">
+			              Vehicle Performance & Economy <i class="fas fa-angle-down rotate-icon float-right"></i>
+			            </h5>
+			          </a>
+			        </div>
+
+			        <!-- Card body -->
+			        <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+			          data-parent="#accordionEx">
+			          <div class="card-body">
+			          	<table class="table table-hover">
+						  {% for vpe in veh.vehicleperformanceeconomy_set.all %}
+						  <tbody>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Fuel consumption (urban)</th>
+						      <td style="font-weight: bold">{{vpe.fuel_consumption_urban}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Fuel consumption (extra urban)</th>
+						      <td style="font-weight: bold">{{vpe.fuel_consumption_extra_urban}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Fuel consumption (combined)</th>
+						      <td style="font-weight: bold">{{vpe.fuel_consumption_combined}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">0 - 60 mph</th>
+						      <td style="font-weight: bold">{{vpe.zero_to_sixty_mph}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Top speed</th>
+						      <td style="font-weight: bold">{{vpe.top_speed}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Cylinders</th>
+						      <td style="font-weight: bold">{{vpe.cylinders}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Valves</th>
+						      <td style="font-weight: bold">{{vpe.valves}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Engine Power</th>
+						      <td style="font-weight: bold">{{vpe.engine_power}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Engine Torque</th>
+						      <td style="font-weight: bold">{{vpe.engine_torque}}</td>
+						    </tr>
+						  </tbody>
+						  {% endfor %}
+						</table> 
+			          </div>
+			        </div>
+
+			      </div>
+			      <!-- Accordion card -->
+
+			      <!-- Accordion card -->
+			      <div class="card w-100">
+
+			        <!-- Card header -->
+			        <div class="card-header bg-indigo" role="tab" id="headingThree3">
+			          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+			            aria-expanded="false" aria-controls="collapseThree3">
+			            <h5 class="mb-0">
+			              Interior & Exterior <i class="fas fa-angle-down rotate-icon float-right"></i>
+			            </h5>
+			          </a>
+			        </div>
+
+			        <!-- Card body -->
+			        <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+			          data-parent="#accordionEx">
+			          <div class="card-body">
+			          	<div class="row">
+			          		<div class="col">
+			          			<ul class="list-group"><b class="text-center">Interior Features</b>
+			          				{% for vi in veh.vehicleinterior_set.all %}
+								    <li class="list-group-item list-group-item-secondary">{{vi.interior}}</li>
+								    {% endfor %}
+			          			</ul>
+			          		</div>
+			          		<div class="col">
+			          			<ul class="list-group"><b class="text-center">Exterior Features</b>
+			          				{% for ve in veh.vehicleexterior_set.all %}
+								    <li class="list-group-item list-group-item-info">{{ve.exterior}}</li>
+								    {% endfor %}
+			          			</ul>
+			          		</div>
+			          	</div>
+			          	
+			          </div>
+			        </div>
+
+			      </div>
+			      <!-- Accordion card -->
+
+			       <!-- Accordion card -->
+			      <div class="card w-100">
+
+			        <!-- Card header -->
+			        <div class="card-header bg-indigo" role="tab" id="headingFour4">
+			          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseFour4"
+			            aria-expanded="false" aria-controls="collapseFour4">
+			            <h5 class="mb-0">
+			              Dimensions <i class="fas fa-angle-down rotate-icon float-right"></i>
+			            </h5>
+			          </a>
+			        </div>
+
+			        <!-- Card body -->
+			        <div id="collapseFour4" class="collapse" role="tabpanel" aria-labelledby="headingFour4"
+			          data-parent="#accordionEx">
+			          <div class="card-body">
+			          	<table class="table table-hover">
+						  {% for vd in veh.vehicledimension_set.all %}
+						  <tbody>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Height</th>
+						      <td style="font-weight: bold">{{vd.height}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Height inclusive of roof rails</th>
+						      <td style="font-weight: bold">{{vd.height_inclusive_of_roof_rails}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Length)</th>
+						      <td style="font-weight: bold">{{vd.length}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Wheel base</th>
+						      <td style="font-weight: bold">{{vd.wheelbase}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Width</th>
+						      <td style="font-weight: bold">{{vd.width}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Width including mirrors</th>
+						      <td style="font-weight: bold">{{vd.width_icluding_mirrors}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Fuel tank capacity</th>
+						      <td style="font-weight: bold">{{vd.fuel_tank_capacity}}</td>
+						    </tr>
+						    <tr>
+						      <th style="font-weight: bold" scope="row">Minimum kerb weight</th>
+						      <td style="font-weight: bold">{{vd.minimum_kerb_weight}}</td>
+						    </tr>
+						  </tbody>
+						  {% endfor %}
+						</table>
+			            
+			          </div>
+			        </div>
+
+			      </div>
+			      <!-- Accordion card -->
+			       <!-- Accordion card -->
+			      <div class="card w-100">
+
+			        <!-- Card header -->
+			        <div class="card-header bg-indigo" role="tab" id="headingFive5">
+			          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseFive5"
+			            aria-expanded="false" aria-controls="collapseFive5">
+			            <h5 class="mb-0">
+			              Safety <i class="fas fa-angle-down rotate-icon float-right"></i>
+			            </h5>
+			          </a>
+			        </div>
+
+			        <!-- Card body -->
+			        <div id="collapseFive5" class="collapse" role="tabpanel" aria-labelledby="headingFive5"
+			          data-parent="#accordionEx">
+			          <div class="card-body">
+			          	<ul class="list-group list-group-flush">
+			          		{% for vs in veh.vehiclesafety_set.all %}
+						  	<li class="list-group-item">{{vs.safety}}</li>
+						  	{% endfor %}
+						</ul>
+			          </div>
+			        </div>
+
+			      </div>
+			      <!-- Accordion card -->
+
+			    </div>
+			    <!-- Accordion wrapper -->
+			</div>
+  		</div>
+
+  		<div class="row m-2">
+  			<div class="col-md-8">
+	  			<div class="card w-100 rounded">
+	    			<div class="card-header l-bg-cherry">
+	    				<h4 class="card-title">Enquire about this vehicle</h4>
+	    			</div>
+	    			<div class="card-body">
+	    				<form method="POST" id="enquiryForm">
+	    					<div class="form-group">
+	    						<label for="Name">Name</label>
+							  	<input type="text" class="form-control" id="name" placeholder="Enter Name" required="required">
+	    					</div>
+
+						  	<div class="form-group">
+						    	<label for="Email">Email address</label>
+						    	<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
+						    	<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+						  	</div>
+						  	<div class="form-group">
+						    	<label for="Phone">Phone</label>
+						    	<input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone number" required="required">
+						    	<small id="phoneHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+						  	</div>
+						  	<div class="form-group">
+						    	<label for="Message">Enquiry Message</label>
+						    	<textarea rows="5" class="form-control" id="enquirymessage" aria-describedby="messageHelp" placeholder="Your vehicle inquiry message" required="required"></textarea>
+						    	<small id="messageHelp" class="form-text text-muted">Describe your inquiry about this vehicle in details.</small>
+						  	</div>
+						  	<button type="submit" class="btn btn-dark">Send Enquiry</button>
+						</form>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="col">
+	    		<div class="card w-100 l-bg-cherry">
+	                <div class="card-statistic-3 p-4">
+	                    <div class="card-icon card-icon-large"><i class="fas fa-question"></i></div>
+	                    <div class="mb-4">
+	                        <h5 class="card-title mb-0">New Enquiries</h5>
+	                    </div>
+	                    <div class="row align-items-center mb-2 d-flex">
+	                        <div class="col-8">
+	                            <h2 class="d-flex align-items-center mb-0">
+	                                3,243
+	                            </h2>
+	                        </div>
+	                        <div class="col-4 text-right">
+	                            <span>12.5% <i class="fa fa-arrow-up"></i></span>
+	                        </div>
+	                    </div>
+	                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+	                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+	                    </div>
+	                </div>
+	            </div> 
+
+	            <div class="card w-100 radius-15 bg-primary">
+	                <div class="card-body text-center">
+	                    <div class="p-4 radius-15">
+	                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="110" height="110" class="rounded-circle shadow p-1 bg-white" alt="">
+	                        <h5 class="mb-0 mt-5 text-white">Used car showroom</h5>
+	                        <p class="mb-3 text-white">Contact Us</p>
+	                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-mobile-alt mr-3" ></i>07765 244907</h5>
+	                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-phone mr-3" ></i>0121 5724898</h5>
+	                        <div class="d-grid"><a href="#" class="btn btn-white radius-15">FIND US</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	    	</div>
+  		</div>
+  		<div class="row m-2">
+  			<dic class="col">
+	  			<div class="card w-100">
+	  				<div class="card-header bg-danger">
+	  					<h5 class="card-title m-2">Please note</h5>
+	  				</div>
+	  				<div class="card-body">
+	  					<p class="card-text">
+	  						This includes MPG figures which are calculated under European Standards, in test conditions, and will vary under normal driving conditions. The information displayed above describes the typical specification of the most recent model of this vehicle. It is not the exact specification for the actual vehicle being offered for sale which may vary. Specifications for older models may also vary. Please contact us prior to purchase to confirm the exact specification of this vehicle.
+	  					</p>
+	  				</div>
+	  			</div>
+	  		</dic>
+  		</div>
+  
+	</div>
+</div>
+<div class="row m-2">
+	<dic class="col">
+		<div class="card w-100">
+			<div class="card-header bg-dark text-white">
+				<h6 class="card-title m-2"><i class="fas fa-map-marker-alt mr-2" ></i>Unit 13 CORNWALL ROAD INDUSTRIAL ESTATE, Smethwick, West Midlands, B66 2JT<span class="float-right"><i class="fas fa-phone-alt mr-2" ></i>07765 244907 | 0121 5724898</span></h6>
+			</div>
+		</div>
+	</dic>
+</div>
+<div class="card">
+	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+
+	<div id="imgModal" class="modal fade bd-example-modal-lg" style="margin-top:45px" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	    	<img class="w-100" id="popup-img" src="" alt="image">
+	    </div>
+	  </div>
+	</div>
+</div>
+<div class="modal fade" id="successMessage" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title text-muted">usedcarshowroomltd.co.uk</h6>
+             </div>
+            
+            <div class="modal-body">
+               
+                <div class="thank-you-pop">
+                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <h1>Thank You!</h1>
+                    <p>Your enquiry about this car is received and we will contact you soon</p>
+                    <h3 class="cupon-pop">
+                        Your Name: <span id="msg_name"></span><br />
+                        Your Email: <span id="msg_email"></span><br />
+                        Your Phone: <span id="msg_phone"></span><br />
+                    </h3>
+                </div>
+                 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+    const url = window.location.href
+    $('#enquiryForm').on('submit',function(e) {
+        e.preventDefault();
+
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'usedcarsdetailspage' veh.id %}",
+            data: {
+                name: $('#name').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                enquirymessage: $('#enquirymessage').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                datatype: "json",
+            },
+            success: function(data){
+                $("#enquiryForm")[0].reset();
+                console.log(data);
+                $("#msg_name").html(data.name);
+                $("#msg_email").html(data.email);
+                $("#msg_phone").html(data.phone);
+                $("#successMessage").modal('show');
+            },
+        });
+    });
+</script>
+
+{% endblock content %}

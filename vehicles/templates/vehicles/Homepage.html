@@ -1,0 +1,519 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Used Car Showroom</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static '/css/homePage.css' %}" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        
+        
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'usedcarspage' %}">Used Cars</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'usedvanspage' %}">Used Vans</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'valetingpage' %}">Valeting</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'autoshinepage' %}">Auto Shine</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contactpage' %}">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Welcome To Our Showroom!</div>
+                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#portfolio">Visit Our Latest Offer On Used Cars</a>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Services</h2>
+                    <h3 class="section-subheading text-muted">Used Cars Showroom Ltd, great deals on used cars.</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-car fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Used Cars</h4>
+                        <p class="text-muted">We are confident you will not be disappointed with our selection of quality used cars. At Used Car Showroom Ltd we offer an extensive range of services and extras meaning that you can buy your used car with confidence and peace of mind. Our showroom in Smethwick stocks a wide range of cars that are ready for viewing today.</p>
+                        <!-- <iframe width="340" height="160" src="https://www.youtube.com/embed/VWrJkx6O0L8" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shuttle-van fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Used Vans</h4>
+                        <p class="text-muted">We are confident you will not be disappointed with our selection of quality used vans. At Used Car Showroom Ltd we offer an extensive range of services and extras meaning that you can buy your used van with confidence and peace of mind. Our showroom in Smethwick stocks a wide range of vans that are ready for viewing today.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-hand-sparkles fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Valeting</h4>
+                        <p class="text-muted">The dedicated valet team at Used Car Showroom Ltd will bring back that showroom shine to your pride and joy with our extensive range of professional valet services. From quick cleans to full luxury valets, we offer a wide selection of valet options to suit all needs. Booking a valet with us couldn't be simpler, just get in touch or visit us in Smethwick to discuss your valeting needs and arrange a time and date that's convenient for you..</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Latest Offer On Used Cars</h2>
+                    <h3 class="section-subheading text-muted">Here you will find the most recent offers on used cars. we update our stocklist regularly.  </h3>
+                </div>
+                <div class="row">
+                    {% for veh in vehicles %}
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{veh.id}}">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                {% if veh.image %}
+                                <img class="img-fluid" src="{{veh.image.url}}" alt="..." />
+                                {% endif %}
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">{{veh.name}}</div>
+                                <h4 class=" text-primary">£ {{veh.price|intcomma}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">About</h2>
+                    <h3 class="section-subheading text-muted">Used Car Showroom Ltd are a specialist used car and van dealer based in West Midlands. We are proud to offer you a first class customer service and very competitive pricing, so please browse our stock list. At Used Car Showroom Ltd, we stock a range of used cars and vans to suit all budgets and lifestyles so we are sure to have the right car or van for you.</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/homepage/about/1.jpg' %}" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2009-2011</h4>
+                                <h4 class="subheading">Our Humble Beginnings</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Let's not kid ourselves. It takes a certain amount of luck to find success like the amazing team of this showroom did. We made it because we discovered the needs of peoples at the right time.You also don't necessarily need money in order to kickstart your small business, but it certainly doesn't hurt. We found success because we saw needs that weren't being addressed, and we had the skill to provide the right solutions.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/homepage/about/2.jpg' %}" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>March 2011</h4>
+                                <h4 class="subheading">An Showroom is Born</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">This kind of success has made Usedcarshowroomltd.com a prominent name in the global e-commerce and classifieds sectors.</p></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/homepage/about/3.jpg' %}" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>December 2015</h4>
+                                <h4 class="subheading">Transition to Full Service</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted"> In order to offer cars and vans to suit everyone we make sure that we update our stocklist regularly. It is therefore always worth giving us a call, even if you don't see what you are looking for on our website.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/homepage/about/4.jpg' %}" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>March 2021</h4>
+                                <h4 class="subheading">Our Expansion</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">At Usedcarshowroomltd.com, we believe that it is our duty to provide our visitors with the best online experience and this is what our mission speaks of - to revolutionize and continuously add value to the way people buy used vehicles online, in UK. We aim to provide our users with the most comprehensive automotive knowledge with respect to Uk and the world alike and help them develop a sense of belonging in the automotive community.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>
+                                Be Part
+                                <br />
+                                Of Our
+                                <br />
+                                Story!
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{% static 'images/homepage/team/1.jpg' %}" alt="..." />
+                            <h4>Parveen Anand</h4>
+                            <p class="text-muted">Lead Designer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{% static 'images/homepage/team/2.jpg' %}" alt="..." />
+                            <h4>Diana Petersen</h4>
+                            <p class="text-muted">Lead Marketer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{% static 'images/homepage/team/3.jpg' %}" alt="..." />
+                            <h4>Larry Parker</h4>
+                            <p class="text-muted">Lead Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                </div>
+            </div>
+        </section>
+        <!-- Clients-->
+        <div class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'images/homepage/logos/microsoft.svg' %}" alt="..." /></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'images/homepage/logos/google.svg' %}" alt="..." /></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'images/homepage/logos/facebook.svg' %}" alt="..." /></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'images/homepage/logos/ibm.svg' %}" alt="..." /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Find Us</h2>
+                    <h3 class="section-subheading text-muted">
+                        Unit 13 CORNWALL ROAD INDUSTRIAL ESTATE, Smethwick, West Midlands, B66 2JT
+                    </h3>
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="card w-100" >
+                                <!-- <img src="{% static 'images/homepage/MapHeader.png' %}" class="card-img-top" alt="..." style="height:250px"> -->
+                                <div class="container-fluid">
+                                    <div class="map-responsive">
+                                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.883135390054!2d-1.9559797999999997!3d52.499355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487097db7ad8f479%3A0x73897c614ccb003e!2sUsed%20Car%20Showroom%20Ltd!5e0!3m2!1sen!2s!4v1622788429436!5m2!1sen!2s" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card w-100">
+                                <h4 class="card-header">Opening Times</h4>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                      <tbody>
+                                        
+                                        <tr>
+                                          <td>Monday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tuesday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Wednesday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Thursday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Friday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Saturday</td>
+                                          <td>Appointment Only</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Sunday</td>
+                                          <td>Closed</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer">
+                                    Please Contact us for vivwing 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">At Used Car Showroom Ltd, we stock a range of used cars and vans at great prices.<br>If for any reason you can't find what you're looking for in stock, please contact us and we will be happy to help you find the right car or van.</h3>
+
+                    <h3 class="section-heading text-uppercase">Get in touch online or call us on</h3>
+                    <div class="row mb-2">
+                        <dic class="col">
+                            <div class="card w-100">
+                                <div class="card-header bg-white text-dark">
+                                    <h5 class="card-title m-2"><i class="fas fa-phone-alt mr-4" ></i>07765 244907 | 0121 5724898</h5>
+                                </div>
+                            </div>
+                        </dic>
+                    </div>
+                </div>
+                <form id="contactForm" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *" required="required" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" name="email" type="email" placeholder="Your Email *" required="required" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <input class="form-control" id="phone" name="phone" type="tel" placeholder="Your Phone *" required="required" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <textarea class="form-control" id="message" name="message" placeholder="Your Message *" required="required"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div id="success"></div>
+                        <button class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">
+                        Copyright &copy; www.usedcarshowroomltd.co.uk
+                        <!-- This script automatically adds the current year to your website footer-->
+                        <!-- (credit: https://updateyourfooter.com/)-->
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio item 1 modal popup-->
+        {% for veh in vehicles %}
+        <div class="portfolio-modal modal fade" id="portfolioModal{{veh.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="{% static 'images/homepage/close-icon.svg'%}" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">{{veh.name}}</h2>
+                                    <p class="item-intro text-muted">{{veh.short_description}}</p>
+                                    {% if veh.image %}
+                                    <img class="img-fluid d-block mx-auto" src="{{veh.image.url}}" alt="..." />
+                                    {% endif %}
+                                    <!-- <p>{{veh.long_description}}</p> -->
+                                    <h4 class="text-center">Key Facts</h4>
+                                    <div class="row text-center">
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/schedule.png'%}"/>
+                                            <h6>Model Year</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.model_year}}</h6>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/fuel.png'%}"/>
+                                            <h6 >Fuel Type</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.fuel_type}}</h6>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/racing.png'%}"/>
+                                            <h6>Mileage</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.mileage|intcomma}}</h6>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/car-engine.png'%}"/>
+                                            <h6>Engine Size</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.engine_size}}</h6>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/automatic-transmission.png'%}"/>
+                                            <h6>Transmission</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.transmission}}</h6>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img width=52px height=52px src="{% static 'images/usedcarspage/paint-brush.png'%}"/>
+                                            <h6>Color</h6>
+                                            <h6 class="font-weight-bold" style="color:crimson">{{veh.color}}</h6>
+                                        </div>
+                                    </div>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Price:</strong>
+                                            £ {{veh.price|intcomma}}
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Used 
+                                        </li>
+                                    </ul>
+                                    <button href="{% url 'usedcarsdetailspage' veh.id %}" class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        View Full Specification
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="modal fade" id="successMessage" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-muted">usedcarshowroomltd.co.uk</h6>
+                     </div>
+                    
+                    <div class="modal-body">
+                       
+                        <div class="thank-you-pop">
+                            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                            <h1>Thank You!</h1>
+                            <p>Your message is received and we will contact you soon</p>
+                            <h3 class="cupon-pop">
+                                Your Name: <span id="msg_name"></span><br />
+                                Your Email: <span id="msg_email"></span><br />
+                                Your Phone: <span id="msg_phone"></span><br />
+                            </h3>
+                        </div>
+                         
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/homePage.js' %}" defer></script>
+
+
+        <script type="text/javascript">
+            const url = window.location.href
+            $('#contactForm').on('submit',function(e) {
+                e.preventDefault();
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sendMessage' %}",
+                    data: {
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        phone: $('#phone').val(),
+                        message: $('#message').val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        datatype: "json",
+                    },
+                    success: function(data){
+                        $("#contactForm")[0].reset();
+                        console.log(data);
+                        $("#msg_name").html(data.name);
+                        $("#msg_email").html(data.email);
+                        $("#msg_phone").html(data.phone);
+                        $("#successMessage").modal('show');
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

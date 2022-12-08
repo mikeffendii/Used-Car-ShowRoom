@@ -1,0 +1,196 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+{% load bootstrap %}
+
+{% block content %}
+<link href="{% static '/css/UsedCars.css' %}" rel="stylesheet" type="text/css" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- <div class="row" style="height:85px; background-color:black"></div> -->
+<style>
+#heroimage{
+	background-image: url("/static/images/usedcarspage/showroom1.jpg");
+	padding-top: 100px;
+	background-size: cover;
+	padding-bottom: 20px;
+}
+</style>
+<!-- Search Section -->
+	<div class="" id="heroimage">
+	    <div class="row justify-content-center">
+	        <div class="col-md-8">
+	            <form>
+	                <div class="input-group">
+	                    <input id="search_here" type="text" name="q" class="form-control form-control-lg" placeholder="Search for vehicles" />
+	                </div>
+	                <div class="input-group-append justify-content-center">
+                    	<button class="btn btn-info " type="submit" id="button-addon2">Search</button>
+                    </div>
+	            </form>
+
+	        </div>
+	    </div>
+	    <div class="row justify-content-center mt-2">
+	        <div class="col-md-8 text-white">
+	            <form method="get">
+	            	<div class="row">
+	            		{% for field in vehicle_filter.form %}
+	            		<div class="col-md-3 col-sm-4">
+	            			{{field|bootstrap}}
+	            		</div>
+	            		{% endfor %}
+	            	</div>
+	                <div class="input-group-append justify-content-center">
+                    	<button class="btn btn-info" type="submit" id="button-addon2">Search</button>
+                    </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+<div class="container-fluid">
+	
+    
+
+	<div class="row m-2" id="ads">
+		{% if q %}
+		<h6 class="text-muted text-center">You Searched For {{q}}</h6>
+		{% endif %}
+	    <!-- Category Card -->
+	    {% for veh in vehicles %}
+	    <div class="col-md-6 mt-4">
+	        <div class="card rounded w-100">
+	            <div class="card-image">
+	                <span class="card-notify-badge">£ {{veh.price|intcomma}}</span>
+	                <span class="card-notify-year">{{veh.model_year}}</span>
+	                <img class="img-fluid" src="{{veh.image.url}}" alt="{{veh.name}} picture" />
+	            </div>
+	            <br>
+	            <div class="card-image-overlay m-auto">
+	                <span class="card-detail-badge">£ {{veh.price|intcomma}}</span>
+	                <span class="card-detail-badge">Used</span>
+	            </div>
+	            <div class="card-body text-center">
+	                <div class="ad-title m-auto">
+	                    <h5 style="font-weight:bold">{{veh.name}}</h5>
+	                </div>
+	                <hr>
+	                <br>
+	                <h5 class="text-center">Key Facts</h5>
+	                <div class="row text-center">
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/schedule.png'%}"/>
+	          				<h6>Model Year</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.model_year}}</h6>
+	          			</div>
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/fuel.png'%}"/>
+	          				<h6 >Fuel Type</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.fuel_type}}</h6>
+	          			</div>
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/racing.png'%}"/>
+	          				<h6>Mileage</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.mileage|intcomma}}</h6>
+	          			</div>
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/car-engine.png'%}"/>
+	          				<h6>Engine Size</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.engine_size}}</h6>
+	          			</div>
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/automatic-transmission.png'%}"/>
+	          				<h6>Transmission</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.transmission}}</h6>
+	          			</div>
+	          			<div class="col-sm-4">
+	          				<img width=32px height=32px src="{% static 'images/usedcarspage/paint-brush.png'%}"/>
+	          				<h6>Color</h6>
+	          				<h6 class="font-weight-bold" style="color:crimson">{{veh.color}}</h6>
+	          			</div>
+	          		</div>
+	                <a class="ad-btn" href="{% url 'usedcarsdetailspage' veh.id %}">View Advert</a>
+	            </div>
+	        </div>
+	    </div>
+	    {% endfor %}
+	</div>
+	
+
+	{% if vehicles.has_other_pages %}
+	<!-- Pagination -->
+	<nav class="my-3 container">
+	    <ul class="pagination">
+	        {% if vehicles.has_previous %}
+	      <li class="page-item"><a class="page-link" href="?page={{vehicles.previous_page_number}}">Previous</a></li>
+	      {% endif %}
+	      {% for i in vehicles.paginator.page_range %}
+	      {% if vehicles.number == i %}
+	      <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+	      {% else %}
+	      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+	      {% endif %}
+	      {% endfor %}
+	      {% if vehicles.has_next %}
+	      <li class="page-item"><a class="page-link" href="?page={{vehicles.next_page_number}}">Next</a></li>
+	      {% endif %}
+	    </ul>
+	</nav>
+	{% endif %}
+	<div class="row m-2">
+		<dic class="col">
+			<div class="card w-100">
+				<div class="card-header bg-darkblue">
+					<h5 class="card-title m-2">Used Cars for sale</h5>
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						We are confident you will not be disappointed with our selection of quality used cars. At Used Car Showroom Ltd we offer an extensive range of services and extras meaning that you can buy your used car with confidence and peace of mind. Our showroom in Smethwick stocks a wide range of cars that are ready for viewing today.
+					</p>
+				</div>
+			</div>
+		</dic>
+	</div>
+
+
+</div>
+
+<div class="row m-2">
+	<dic class="col">
+		<div class="card w-100">
+			<div class="card-header bg-dark text-white">
+				<h6 class="card-title m-2"><i class="fas fa-map-marker-alt mr-2" ></i>Unit 13 CORNWALL ROAD INDUSTRIAL ESTATE, Smethwick, West Midlands, B66 2JT<span class="float-right"><i class="fas fa-phone-alt mr-2" ></i>07765 244907 | 0121 5724898</span></h6>
+			</div>
+		</div>
+	</dic>
+</div>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+
+
+<script type="text/javascript">
+	$(function(){
+		var available_veh = [
+			{% for veh in vehicles %}
+			"{{veh.name}}",
+			{% endfor %}	
+		];
+		$("#id_name").autocomplete({
+			source: available_veh
+		});
+		$("#search_here").autocomplete({
+			source: available_veh
+		});
+
+	});
+
+
+</script>
+{% endblock content %}

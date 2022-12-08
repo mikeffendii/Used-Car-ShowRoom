@@ -1,0 +1,346 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<style>
+
+.bg-danger{
+     background: linear-gradient(to left, #cc0000 30%, #ffffff 125%) !important;
+}
+.bg-primary {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+}
+.bg-cherry{
+    background: linear-gradient(to right, #493240, #f09) !important;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-a-brc-tp:not(.disabled):not(:disabled).active, .btn-brc-tp, .btn-brc-tp:focus:not(:hover):not(:active):not(.active):not(.dropdown-toggle), .btn-h-brc-tp:hover, .btn.btn-f-brc-tp:focus, .btn.btn-h-brc-tp:hover {
+    border-color: transparent;
+}
+.btn-outline-blue {
+    color: #0d6ce1;
+    border-color: #5a9beb;
+    background-color: transparent;
+}
+.btn {
+    cursor: pointer;
+    position: relative;
+    z-index: auto;
+    border-radius: .175rem;
+    transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,opacity .15s;
+}
+.border-2 {
+    border-width: 2px!important;
+    border-style: solid!important;
+    border-color: transparent;
+}
+.bgc-white {
+    background-color: #fff!important;
+}
+
+
+.text-green-d1 {
+    color: #277b5d!important;
+}
+.letter-spacing {
+    letter-spacing: .5px!important;
+}
+.font-bolder, .text-600 {
+    font-weight: 600!important;
+}
+.text-170 {
+    font-size: 1.7em!important;
+}
+
+.text-purple-d1 {
+    color: #6d62b5!important;
+}
+
+.text-primary-d1 {
+    color: #276ab4!important;
+}
+.text-secondary-d1 {
+    color: #5f718b!important;
+}
+.text-180 {
+    font-size: 1.8em!important;
+}
+.text-150 {
+    font-size: 1.5em!important;
+}
+.text-danger-m3 {
+    color: #e05858!important;
+}
+.rotate-45 {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.position-l {
+    left: 0;
+}
+.position-b, .position-bc, .position-bl, .position-br, .position-center, .position-l, .position-lc, .position-r, .position-rc, .position-t, .position-tc, .position-tl, .position-tr {
+    position: absolute!important;
+    display: block;
+}
+.mt-n475, .my-n475 {
+    margin-top: -2.5rem!important;
+}
+.ml-35, .mx-35 {
+    margin-left: 1.25rem!important;
+}
+
+.text-dark-l1 {
+    color: #56585e!important;
+}
+.text-90 {
+    font-size: .9em!important;
+}
+.text-left {
+    text-align: left!important;
+}
+
+.mt-25, .my-25 {
+    margin-top: .75rem!important;
+}
+
+.text-110 {
+    font-size: 1.1em!important;
+}
+
+.deleted-text{
+    text-decoration:line-through;;    
+}
+#heroimage{
+    background-image: url("/static/images/usedcarspage/valetingbg.jpeg");
+    padding-top: 200px;
+    background-size: cover;
+    padding-bottom: 350px;
+}
+</style>
+<!-- <div class="row" style="height:85px; background-color:black"></div> -->
+<div id="heroimage">
+</div>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card w-100">
+                <div class="card-header bg-cherry text-white">
+                    <h4 class="card-title">Valeting</h4>
+                </div>
+                <div class="card-body">
+                    The dedicated valet team at Used Car Showroom Ltd will bring back that showroom shine to your pride and joy with our extensive range of professional valet services. From quick cleans to full luxury valets, we offer a wide selection of valet options to suit all needs. Booking a valet with us couldn't be simpler, just get in touch or visit us in Smethwick to discuss your valeting needs and arrange a time and date that's convenient for you.
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <img style="border-radius: 5px" src="{% static 'images/valeting/valeting3.png' %}" class="img-fluid" alt="Responsive image"> 
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row m-1">
+                                <div class="col">
+                                    <img style="border-radius: 5px" src="{% static 'images/valeting/valeting.jpg' %}" class="img-fluid" alt="Responsive image">
+                                </div>
+                                <div class="col">
+                                    <img style="border-radius: 5px" src="{% static 'images/valeting/valeting1.jpg' %}" class="img-fluid" alt="Responsive image">
+                                </div>
+                            </div>
+                            <div class="row m-1">
+                                <div class="col">
+                                    <img style="border-radius: 5px" src="{% static 'images/valeting/valeting2.jpg' %}" class="img-fluid" alt="Responsive image">
+                                </div>
+                                <div class="col">
+                                    <img style="border-radius: 5px" src="{% static 'images/valeting/ValetingLogo.PNG' %}" class="img-fluid" alt="Responsive image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-100">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">Valeting Prices</h4>
+                </div>
+                <div class="card-body">
+                    {% for valet in valets %}
+                    <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm">
+                        <!-- Basic Plan -->
+                        <div class="row align-items-center">
+                          <div class="col-12 col-md-4">
+                            <h4 class="pt-3 text-170 text-600 text-primary-d1 letter-spacing">
+                              {{valet.name}}
+                            </h4>
+
+                            <div class="text-secondary-d1 text-120">
+                              <span class="ml-n15 align-text-bottom">£</span><span class="text-180">{{valet.price}}</span>
+                            </div>
+                          </div>
+
+                            
+                          <ul class="list-unstyled mb-0 col-12 col-md-4 text-dark-l1 text-90 text-left my-4 my-md-0">
+                            {% for vf in valet.valetfeature_set.all %}
+                            <li>
+                              <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
+                              
+                              <span class="text-110">{{vf.feature}}</span>
+                            </li>
+                            {% endfor %}
+
+                            
+                          </ul>
+
+                          <div class="col-12 col-md-4 text-center">
+                            <a href="#" data-toggle="modal" data-target="#Modal{{valet.id}}" class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600">Enquire Valet</a>
+                          </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="card w-100 radius-15 bg-primary">
+                <div class="card-body text-center">
+                    <div class="p-4 radius-15">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="110" height="110" class="rounded-circle shadow p-1 bg-white" alt="">
+                        <h5 class="mb-0 mt-5 text-white">Used car showroom</h5>
+                        <p class="mb-3 text-white">Contact Us</p>
+                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-mobile-alt mr-3" ></i>07765 244907</h5>
+                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-phone mr-3" ></i>0121 5724898</h5>
+                        <div class="d-grid"><a href="#" class="btn btn-white radius-15">FIND US</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-2">
+    <dic class="col">
+        <div class="card w-100">
+            <div class="card-header bg-dark text-white">
+                <h6 class="card-title m-2"><i class="fas fa-map-marker-alt mr-2" ></i>Unit 13 CORNWALL ROAD INDUSTRIAL ESTATE, Smethwick, West Midlands, B66 2JT<span class="float-right"><i class="fas fa-phone-alt mr-2" ></i>07765 244907 | 0121 5724898</span></h6>
+            </div>
+        </div>
+    </dic>
+</div>
+
+{% for valet in valets %}
+
+<!-- Valet Enquiry Modal -->
+<div class="modal fade" id="Modal{{valet.id}}" tabindex="-1" role="dialog" aria-labelledby="valetModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="valetModalLabel">Enquire about this Valet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="valetEnquiryForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" id="name" data-valet_id="{{valet.id}}" placeholder="Enter Name" required="required">
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone number" required="required">
+                <small id="phoneHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="Message">Valet Enquiry Message</label>
+                <textarea rows="5" class="form-control" id="valetenquirymessage" aria-describedby="messageHelp" placeholder="Your Valet inquiry message" required="required"></textarea>
+                <small id="messageHelp" class="form-text text-muted">Describe your inquiry about this Valet in details.</small>
+            </div>
+            <button type="submit" class="btn btn-dark">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!-- Thank you message Modal -->
+<div class="modal fade" id="successMessage" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title text-muted">usedcarshowroomltd.co.uk</h6>
+             </div>
+            
+            <div class="modal-body">
+               
+                <div class="thank-you-pop">
+                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <h1>Thank You!</h1>
+                    <p>Your enquiry about this valet is received and we will contact you soon</p>
+                    <h3 class="cupon-pop">
+                        Your Name: <span id="msg_name"></span><br />
+                        Your Email: <span id="msg_email"></span><br />
+                        Your Phone: <span id="msg_phone"></span><br />
+                    </h3>
+                </div>
+                 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const url = window.location.href
+    // $('#valet_enquiry_btn').click(function() {
+    //     console.log('javascript running')
+    //     var valet_id;
+    //     valet_id = $(this).attr("data-valet_id");
+    //     console.log(valet_id);
+    // });
+
+    $('#valetEnquiryForm').on('submit',function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'sendValetEnquiry' %}",
+            data: {
+                valet_id: $('#name').data('valet_id'),
+                name: $('#name').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                valetenquirymessage: $('#valetenquirymessage').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                datatype: "json",
+            },
+            success: function(data){
+                $("#valetEnquiryForm")[0].reset();
+                console.log(data);
+                $("#msg_name").html(data.name);
+                $("#msg_email").html(data.email);
+                $("#msg_phone").html(data.phone);
+                $("#successMessage").modal('show');
+            },
+        });
+    });
+</script>
+{% endblock content %}

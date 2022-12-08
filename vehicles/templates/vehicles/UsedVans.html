@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+
+.bg-danger{
+     background: linear-gradient(to left, #cc0000 30%, #ffffff 125%) !important;
+}
+.bg-primary {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+}
+.bg-cherry{
+    background: linear-gradient(to right, #493240, #f09) !important;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+#heroimage{
+    background-image: url("/static/images/usedcarspage/showroomvan.jpg");
+    padding-top: 200px;
+    background-size: cover;
+    padding-bottom: 165px;
+}
+.bg-darkblue{
+    background: linear-gradient(to left, #003366 0%, #ccffff 100%) !important;
+}
+</style>
+<!-- <div class="row" style="height:85px; background-color:black"></div> -->
+
+<!-- Search Section -->
+<div class="" id="heroimage">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form>
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="Search for vans" />
+                </div>
+                <div class="input-group-append justify-content-center">
+                    <button class="btn btn-info " type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4">
+    <div class="row m-2">
+        <div class="col-md-8">
+            <div class="card w-100">
+                <div class="card-header bg-cherry text-white">
+                    <h4 class="card-title">Used Vans</h4>
+                </div>
+                <div class="card-body">
+                    Sorry, we don't have any vehicles available at the moment, please call back another time as we always have stock coming in.
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 radius-15 bg-primary">
+                <div class="card-body text-center">
+                    <div class="p-4 radius-15">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="110" height="110" class="rounded-circle shadow p-1 bg-white" alt="">
+                        <h5 class="mb-0 mt-5 text-white">Used car showroom</h5>
+                        <p class="mb-3 text-white">Contact Us</p>
+                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-mobile-alt mr-3" ></i>07765 244907</h5>
+                        <h5 class="mb-2 mt-2 text-white"><i class="fas fa-phone mr-3" ></i>0121 5724898</h5>
+                        <div class="d-grid"><a href="#" class="btn btn-white radius-15">FIND US</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col">
+            <div class="card w-100">
+                <div class="card-header bg-darkblue">
+                    <h5 class="card-title m-2">Used Vans for sale</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        We are confident you will not be disappointed with our selection of quality used vans. At Used Car Showroom Ltd we offer an extensive range of services and extras meaning that you can buy your used van with confidence and peace of mind. Our showroom in Smethwick stocks a wide range of vans that are ready for viewing today.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="row m-2">
+    <dic class="col">
+        <div class="card w-100">
+            <div class="card-header bg-dark text-white">
+                <h6 class="card-title m-2"><i class="fas fa-map-marker-alt mr-2" ></i>Unit 13 CORNWALL ROAD INDUSTRIAL ESTATE, Smethwick, West Midlands, B66 2JT<span class="float-right"><i class="fas fa-phone-alt mr-2" ></i>07765 244907 | 0121 5724898</span></h6>
+            </div>
+        </div>
+    </dic>
+</div>
+{% endblock content %}
